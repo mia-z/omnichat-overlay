@@ -1,0 +1,105 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "yarn run build",
+    "beforeDevCommand": "yarn run dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../build"
+  },
+  "package": {
+    "productName": "streamer-chat-overlay",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
+    "allowlist": {
+      "globalShortcut": {
+        "all": true
+      },
+      "window": {
+        "all": false,
+        "center": true,
+        "requestUserAttention": true,
+        "setResizable": true,
+        "setMaximizable": true,
+        "setMinimizable": true,
+        "setClosable": true,
+        "setTitle": true,
+        "maximize": true,
+        "unmaximize": true,
+        "minimize": true,
+        "unminimize": true,
+        "show": true,
+        "hide": true,
+        "close": true,
+        "setDecorations": true,
+        "setAlwaysOnTop": true,
+        "setContentProtected": false,
+        "setSize": true,
+        "setMinSize": true,
+        "setMaxSize": true,
+        "setPosition": true,
+        "setFullscreen": true,
+        "setFocus": true,
+        "print": true,
+        "startDragging": true,
+        "create": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "xyz.miaz.streamerchatoverlay",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "all",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "label": "main",
+        "decorations": false,
+        "fullscreen": false,
+        "resizable": true,
+        "title": "Stream Chat Overlay",
+        "width": 800,
+        "height": 600,
+        "transparent": true,
+        "center": true
+      }
+    ]
+  }
+}

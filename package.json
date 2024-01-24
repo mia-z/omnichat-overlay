@@ -1,0 +1,52 @@
+{
+	"name": "streamer-chat-overlay",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@iconify/svelte": "^3.1.6",
+		"@melt-ui/pp": "^0.3.0",
+		"@melt-ui/svelte": "^0.70.0",
+		"@sveltejs/adapter-auto": "^3.1.0",
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/kit": "^2.0.6",
+		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@types/luxon": "^3",
+		"@types/node": "^20.10.6",
+		"@types/ws": "^8",
+		"autoprefixer": "^10.4.16",
+		"daisyui": "^4.5.0",
+		"postcss": "^8.4.32",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.5.10",
+		"sass": "^1.69.7",
+		"svelte": "^5.0.0-next.26",
+		"svelte-check": "^3.6.2",
+		"tailwindcss": "^3.4.0",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.3",
+		"vite": "^5.0.10"
+	},
+	"type": "module",
+	"dependencies": {
+		"@tailwindcss/typography": "^0.5.10",
+		"@tauri-apps/api": "^1.5.3",
+		"@tauri-apps/cli": "^1.5.9",
+		"axios": "^1.6.5",
+		"eventemitter3": "^5.0.1",
+		"lucide-svelte": "^0.312.0",
+		"luxon": "^3.4.4",
+		"prisma": "^5.6.0",
+		"tauri-plugin-store-api": "^0.0.0",
+		"ws": "^8.16.0"
+	},
+	"packageManager": "yarn@4.0.2"
+}

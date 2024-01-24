@@ -1,0 +1,10 @@
+node_modules
+.svelte-kit
+.yarn
+static
+.npmrc
+.gitignore
+.yarnrc.yml
+package.json
+README.md
+yarn.lock

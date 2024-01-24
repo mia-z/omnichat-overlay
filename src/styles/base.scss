@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400;700&family=Roboto+Flex:wght@400;700&family=Roboto+Mono&family=Wix+Madefor+Text&family=Arimo:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Nunito:wght@300;400;500;600&display=swap");
+
+@import "./tw.css";
+
+:root {
+    --twitch-purple: rgb(145, 70, 255);
+    --twitch-purple-disabled: rgba(145, 70, 255, 0.4);
+    --twitch-purple-dark: rgb(119, 44, 232);
+
+    @apply font-nunito;
+}
+
+button.btn, a.btn {
+    &.btn-base {
+        &:active {
+            box-shadow: 0 0px 8px rgb(212 212 216 / 0.7);
+        }
+        &:hover {
+            @apply bg-zinc-100;
+        }
+        @apply text-zinc-900 bg-zinc-200/90;
+    }
+    @apply p-2 rounded-md shadow-md border-[1px] font-bold  transition-all duration-150 select-none border-zinc-600/80;
+}
