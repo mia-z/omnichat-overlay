@@ -9,10 +9,8 @@
     const twitchData = await LoadTwitchOAuthData();
     if (twitchData) {
         try {
-            console.log(twitchData);
-
             if (DateTime.local() > DateTime.fromSeconds(twitchData.currentToken.expiresAt)) {
-                console.log("token expired, renewing!")
+                console.log("token expired, renewing!");
                 const refreshedTwitchToken = await RefreshTwitchToken(twitchData.currentToken.refreshToken);
 
                 twitchOAuthStore.updateTwitchOAuthData({

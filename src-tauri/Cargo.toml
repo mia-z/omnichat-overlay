@@ -1,11 +1,11 @@
 [package]
-name = "app"
+name = "omnichat-overlay"
 version = "0.1.0"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["Ryan Cockram"]
 license = ""
 repository = ""
-default-run = "app"
+default-run = "omnichat-overlay"
 edition = "2021"
 rust-version = "1.60"
 
@@ -17,7 +17,7 @@ tauri-build = { version = "1.5.1", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.4", features = [ "window-create", "window-start-dragging", "window-unmaximize", "window-set-size", "window-set-max-size", "window-set-resizable", "window-set-fullscreen", "window-set-minimizable", "window-request-user-attention", "window-set-title", "window-set-position", "window-set-maximizable", "window-set-min-size", "window-minimize", "system-tray", "window-set-always-on-top", "window-center", "window-set-focus", "window-print", "window-set-decorations", "window-set-content-protected", "window-set-closable", "window-maximize", "window-show", "window-hide", "window-unminimize", "window-close", "global-shortcut-all"] }
+tauri = { version = "1.5.4", features = [ "window-set-cursor-grab", "window-create", "window-start-dragging", "window-unmaximize", "window-set-size", "window-set-max-size", "window-set-resizable", "window-set-fullscreen", "window-set-minimizable", "window-request-user-attention", "window-set-title", "window-set-position", "window-set-min-size", "window-minimize", "system-tray", "window-set-always-on-top", "window-center", "window-set-focus", "window-print", "window-set-decorations", "window-set-content-protected", "window-set-closable", "window-maximize", "window-show", "window-hide", "window-unminimize", "window-close", "global-shortcut-all"] }
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
 
 [features]

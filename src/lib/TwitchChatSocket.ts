@@ -93,7 +93,8 @@ export class TwitchChatSocket {
             this.socket.send("CAP REQ :twitch.tv/membership twitch.tv/tags twitch.tv/commands");
             this.socket.send(`PASS oauth:${this.token}`);
             this.socket.send(`NICK ${this.channelToJoin}`);
-            this.socket.send(`JOIN #${this.channelToJoin},#loltyler1`);
+            this.socket.send(`JOIN #${this.channelToJoin},#chudlogic`);
+            this.connected = true;
         });
 
         this.socket.addEventListener("close", (code) => {
@@ -103,6 +104,7 @@ export class TwitchChatSocket {
         });
         
         this.socket.addEventListener("error", (err) => {
+            this.connected = false;
             console.log("TWITCH SOCKET ERROR");
             console.log(err);
         });

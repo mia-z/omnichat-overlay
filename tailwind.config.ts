@@ -15,6 +15,11 @@ export const config: Config = {
             },
         },
         extend: {
+            textShadow: {
+                sm: "0 1px 2px var(--tw-shadow-color)",
+                DEFAULT: "0 2px 4px var(--tw-shadow-color)",
+                lg: "0 8px 16px var(--tw-shadow-color)",
+            },
             spacing: {
                 128: "32rem",
                 144: "36rem",
@@ -71,11 +76,24 @@ export const config: Config = {
                         height: value,
                     }),
                 },
-                { values: theme("spacing") }
-                );
-            }),
-        ],
-    };
-    
-    export default config;
+                { 
+                    values: theme("spacing") 
+                }
+            );
+        }),
+        plugin(function ({ matchUtilities, theme }) {
+            matchUtilities( {
+                "text-shadow": (value) => ({
+                    textShadow: value,
+                }),
+                },
+                { 
+                    values: theme("textShadow") 
+                }
+            )
+        }),
+    ],
+};
+
+export default config;
     

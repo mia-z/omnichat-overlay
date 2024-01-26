@@ -1,13 +1,14 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
     import { page } from "$app/stores";
+    import { hasIntegrations } from "$lib/Utils";
 </script>
 
 <div class={"w-14 bg-zinc-700 h-full flex flex-col gap-y-3"}>
     <a href={"/"} class:selected={$page.url.pathname === "/"} class={"btn btn-base menu-btn flex"}>
         <Icon icon={"ci:main-component"} width={38} class={"m-auto text-magnum-700"} />
     </a>
-    <a href={"/accounts"} class:selected={$page.url.pathname === "/accounts"} class={"btn btn-base menu-btn flex"}>
+    <a href={"/accounts"} class:selected={$page.url.pathname === "/accounts"} class={"btn btn-base menu-btn flex relative"}>
         <Icon icon={"ci:user-01"} width={38} class={"m-auto text-magnum-700"} />
     </a>
     <a href={"/settings"} class:selected={$page.url.pathname === "/settings"} class={"btn btn-base menu-btn mt-auto flex"}>

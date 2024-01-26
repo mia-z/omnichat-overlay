@@ -1,15 +1,4 @@
 import { writable, get } from "svelte/store";
-import { DateTime } from "luxon";
-
-type TwitchOAuthStore = {
-    code: string,
-    currentToken: {
-        refreshToken: string,
-        token: string,
-        expiresAt: number,
-        expiresIn: number
-    }
-}
 
 const createOAuthStore = () => {
     const { subscribe, set, update } = writable<OAuthData | null>();
