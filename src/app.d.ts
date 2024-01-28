@@ -20,6 +20,7 @@ declare global {
     }
 
     type OAuthData = {
+        enabled: boolean,
         code: OAuthCode,
         currentToken: OAuthTokenData
     }

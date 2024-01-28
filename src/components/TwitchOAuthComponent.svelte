@@ -2,7 +2,7 @@
     import { WebviewWindow, appWindow } from "@tauri-apps/api/window";
     import { listen } from "@tauri-apps/api/event";
     import Icon from "@iconify/svelte";
-    import { twitchOAuthStore } from "$lib/TwitchOAuth.store";
+    import { oauthStore, twitchOAuthStore } from "$lib/OAuth.store";
     import { GetTwitchToken, GetTwitchUser, RevokeTwitchToken } from "$lib/TwitchHelpers";
     import { twitchUserStore } from "$lib/TwitchUser.store";
     import { DeleteTwitchOAuthData, SaveTwitchOAuthData } from "$lib/TauriDataStore";
@@ -86,8 +86,9 @@
 
             const tokenRes = await GetTwitchToken(code);
 
-            await twitchOAuthStore.updateTwitchOAuthData({ 
+            await oauthStore.twitch.updateTwitchOAuthData({ 
                 code: code,
+                enabled: true,
                 currentToken: {
                     token: tokenRes.access_token,
                     refreshToken: tokenRes.refresh_token,
@@ -128,7 +129,7 @@
         try {
             if ($twitchOAuthStore) { //
                 await RevokeTwitchToken($twitchOAuthStore.currentToken.token);
-                twitchOAuthStore.resetTwitchOAuthData();
+                oauthStore.twitch.resetTwitchOAuthData();
                 twitchUserStore.resetTwitchUser();
                 const deleted = await DeleteTwitchOAuthData();
                 if (!deleted) {
@@ -183,20 +184,20 @@
 <div use:melt={$portalled}>
     {#if $open}
         <div use:melt={$overlay} class={"fixed m-3 rounded-lg inset-0 z-50 bg-black/50"} transition:fade={{ duration: 150 }}/>
-        <div class={"fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-white p-6 shadow-lg"}
+        <div class={"fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-zinc-800 p-6 shadow-lg"}
             transition:fly={{
                 duration: 150,
                 y: 8
             }}
             use:melt={$content}
         >
-            <h2 use:melt={$title} class={"m-0 text-lg font-medium text-black"}>
+            <h2 use:melt={$title} class={"m-0 text-lg font-bold  text-magnum-700"}>
                 Unlink Twitch account
             </h2>
-            <button use:melt={$close} aria-label="close" class={"absolute right-4 top-4 inline-flex h-6 w-6 appearance-none items-center justify-center rounded-full p-1 text-magnum-800 hover:bg-magnum-100 focus:shadow-magnum-400"}>
+            <button use:melt={$close} aria-label="close" class={"absolute right-4 top-4 inline-flex h-6 w-6 appearance-none items-center justify-center rounded-full p-1 text-magnum-800 underline hover:bg-magnum-100 focus:shadow-magnum-400"}>
                 <Icon icon={"mdi:close"} class={"square-4"} />
             </button>
-            <p use:melt={$description} class={"mb-5 mt-2 leading-normal text-zinc-600"}>
+            <p use:melt={$description} class={"mb-5 mt-2 leading-normal text-zinc-200/90"}>
                 Are you sure you want to unlink your Twitch account?
             </p>
             <div class={"flex flex-row w-full justify-end space-x-3"}>
@@ -207,7 +208,7 @@
                         Unlink
                     {/if}
                 </button>
-                <button disabled={unlinking} use:melt={$close} class={"btn hover:bg-red-600 active:bg-red-500 bg-red-500 text-white"}>
+                <button disabled={unlinking} use:melt={$close} class={"btn btn-danger"}>
                     Cancel
                 </button>
             </div>

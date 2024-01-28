@@ -2,11 +2,11 @@
     import { TwitchChatSocket } from "$lib/TwitchChatSocket";
     import { onMount } from "svelte";
     import { twitchUserStore } from "$lib/TwitchUser.store";
-    import { twitchOAuthStore } from "$lib/TwitchOAuth.store";
+    import { hasOAuth, twitchOAuthStore } from "$lib/OAuth.store";
     import { appWindow, WebviewWindow } from "@tauri-apps/api/window";
     import { emit } from "@tauri-apps/api/event";
     import Icon from "@iconify/svelte";
-    import { integrations } from "$lib/Integrations.svelte";
+
     const { VITE_OVERLAY_URL } = import.meta.env;
 
     let twitchSocket = $state<TwitchChatSocket>();
@@ -66,7 +66,6 @@
         await setCleanupEvent();
         overlayOpen = true;
     }
-    console.log($twitchOAuthStore);
 </script>
 
 <div class={"w-full h-full flex flex-col gap-y-3 align-middle"}>
@@ -74,12 +73,9 @@
         <h3 class={"underline text-magnum-700 font-bold text-center"}>
             Overlay Manager
         </h3>
-        <!-- <p class={"text-zinc-200/80 text-center"}>
-            Use the below links to connect accounts.
-        </p> -->
     </div>
     <div class={"flex-grow flex flex-col p-2 gap-y-2 relative"}>
-        {#if !integrations.twitch}
+        {#if !$hasOAuth}
             <div class={"absolute top-1 left-1 bottom-1 right-1 w-[calc(100%-8px)] h-[calc(100%-8px)] rounded-md bg-zinc-900/30 backdrop-blur-[2px] flex flex-col"}>
                 <div class={"absolute top-0 left-0 w-full h-2 bg-magnum-700 rounded-t-lg"} />
                 <div class={"prose select-none mx-auto p-3"}>
@@ -91,6 +87,10 @@
                         Go into the 'Accounts and Integrations' tab to begin setting up your accounts.
                     </p>
                 </div>
+                <a href={"/accounts"} class={"btn btn-base mx-auto inline-flex"}>
+                    Click to go to Accounts and Integrations
+                    <Icon class={"ml-2"} width={22} icon={"ci:user-01"} />
+                </a>
             </div>
         {/if}
         <div class={"flex-grow grid grid-cols-3 grid-flow-row auto-rows-max place-content-end h-full w-full"}>

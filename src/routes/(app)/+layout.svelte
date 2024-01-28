@@ -1,5 +1,5 @@
 <script context="module">
-    import { GetTwitchOAuthData, twitchOAuthStore } from "$lib/TwitchOAuth.store";
+    import { twitchOAuthStore, oauthStore, twitchOAuth } from "$lib/OAuth.store";
     import { LoadTwitchOAuthData, LoadYoutubeOAuthData, SaveTwitchOAuthData } from "$lib/TauriDataStore";
     import { GetTwitchUser, RefreshTwitchToken } from "$lib/TwitchHelpers";
     import { twitchUserStore } from "$lib/TwitchUser.store";
@@ -13,7 +13,7 @@
                 console.log("token expired, renewing!");
                 const refreshedTwitchToken = await RefreshTwitchToken(twitchData.currentToken.refreshToken);
 
-                twitchOAuthStore.updateTwitchOAuthData({
+                oauthStore.twitch.updateTwitchOAuthData({
                     code: twitchData.code,
                     currentToken: {
                         token: refreshedTwitchToken.access_token,
@@ -23,10 +23,10 @@
                     }
                 });
             } else {
-                twitchOAuthStore.updateTwitchOAuthData(twitchData);
+                oauthStore.twitch.updateTwitchOAuthData(twitchData);
             }
             
-            const updatedOAuthData = GetTwitchOAuthData();
+            const updatedOAuthData = twitchOAuth();
 
             if (!updatedOAuthData) {
                 addErrorToast("Failed to update twitch oauth data");

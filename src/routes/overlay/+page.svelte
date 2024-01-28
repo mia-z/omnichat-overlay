@@ -82,9 +82,3 @@
         </div>
     </div>
 </div>
-
-<style lang="scss">
-    :root {
-        
-    }
-</style>
